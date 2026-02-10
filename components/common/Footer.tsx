@@ -73,7 +73,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-black py-16 lg:py-20">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Company Info */}
           <div className="lg:col-span-5">
@@ -84,6 +84,7 @@ const Footer = () => {
                 alt="Next Switch Logo"
                 width={180}
                 height={40}
+                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
             <p className="text-gray-300 leading-relaxed max-w-sm text-sm">

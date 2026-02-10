@@ -31,7 +31,7 @@ const ServiceHero = () => {
                 />
             </div>
 
-            <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="container mx-auto px-4 lg:px-12 relative z-10">
                 <div className="max-w-4xl">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
@@ -40,19 +40,19 @@ const ServiceHero = () => {
                     </div>
 
                     {/* Heading */}
-                    <h1 className="text-4xl md:text-5xl lg:text-[70px] font-medium text-white leading-[1.1] mb-6 tracking-tight">
+                    <h1 className="text-3xl md:text-4xl lg:text-6xl font-semibold text-white leading-tight mb-8 tracking-tight">
                         Elevate Your Vision With Our
                         <br />
                         Expert Development
                     </h1>
 
                     {/* Description */}
-                    <p className="text-white/80 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-light">
+                    <p className="text-white/80 text-base md:text-lg lg:text-xl max-w-2xl mb-12 leading-relaxed font-light">
                         Delivering Solutions today, built with quality that empowers your tomorrow.
                     </p>
 
                     {/* Buttons */}
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                         <Link href="#contact">
                             <Button
                                 size="lg"

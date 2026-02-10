@@ -57,9 +57,9 @@ const TestimonialsSection = () => {
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-8 relative">
+      <div className="container mx-auto px-4 lg:px-12 relative">
         {/* Header */}
-        <h2 className="text-4xl font-sans md:text-5xl lg:text-6xl font-semibold text-white text-center mb-16">
+        <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold text-white text-center mb-16 lg:mb-20 leading-tight">
           What Our Clients <span className="font-display italic text-[#FF9212]">Say</span>
         </h2>
 

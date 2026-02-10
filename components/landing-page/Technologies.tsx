@@ -14,7 +14,7 @@ const technologies = [
 const TechnologiesSection = () => {
   return (
     <section className="py-16 lg:py-20 bg-[#F5F5F5]">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         {/* Title */}
         <p className="text-foreground/60 text-sm font-medium mb-10">
           Technologies <span className="font-display-italic">We Use</span>

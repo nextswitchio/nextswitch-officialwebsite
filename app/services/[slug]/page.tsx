@@ -50,7 +50,7 @@ const ServiceDetailsPage = async ({ params }: PageProps) => {
             return (
                 <>
                     <main className="pt-32 pb-20 min-h-screen">
-                        <div className="container mx-auto px-4">
+                        <div className="container mx-auto px-4 lg:px-12">
                             <h1 className="text-2xl">Service profile for {slug} (Content coming soon)</h1>
                         </div>
                     </main>
@@ -66,7 +66,7 @@ const ServiceDetailsPage = async ({ params }: PageProps) => {
     return (
         <>
             <main className="pt-32 pb-20 bg-white min-h-screen">
-                <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
+                <div className="container mx-auto px-4 lg:px-12 max-w-7xl">
                     {/* Badge */}
                     <div className="mb-8">
                         <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-medium text-gray-600">

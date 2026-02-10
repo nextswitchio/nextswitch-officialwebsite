@@ -20,7 +20,7 @@ export default function BlogHero() {
                 <div className="absolute -bottom-1/4 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
             </div>
 
-            <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="container mx-auto px-4 lg:px-12 relative z-10">
                 <div className="flex flex-col items-center text-center max-w-6xl mx-auto">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md mb-12 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
@@ -29,24 +29,24 @@ export default function BlogHero() {
                     </div>
 
                     {/* Heading */}
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.1] tracking-tight">
+                    <h1 className="text-3xl md:text-4xl lg:text-6xl mb-10 leading-tight tracking-tight">
                         <span className={`${playfairDisplay.variable} font-display italic font-normal text-[#00F5FF]`}>
                             Blogs and Publications
                         </span>
                         <br />
-                        <span className="font-light text-white mr-4">for Next</span>
-                        <span className="font-bold text-white">Switch</span>
+                        <span className="font-light text-white">for Next</span>
+                        <span className="font-semibold text-white ml-2">Switch</span>
                     </h1>
 
                     {/* Subheader */}
-                    <p className="text-white/80 text-lg md:text-xl mb-12 max-w-3xl leading-relaxed tracking-wide font-light">
+                    <p className="text-white/80 text-base md:text-lg lg:text-xl mb-14 max-w-3xl leading-relaxed font-light">
                         Find everything you need here- our logo, team photos, recent news, product images, and spotlights on our partners.
                     </p>
 
                     {/* CTA Button */}
                     <Button
                         size="lg"
-                        className="rounded-full bg-linear-to-r from-[#00AEEF] to-[#01F9C6] text-[#001F3F] font-bold px-6 py-4 h-auto text-xl hover:scale-105 hover:shadow-[0_0_40px_rgba(1,249,198,0.4)] transition-all duration-300 group"
+                        className="rounded-full bg-gradient-to-r from-[#00AEEF] to-[#01F9C6] text-[#001F3F] font-semibold px-8 py-3 h-auto text-base md:text-lg border-none transition-all hover:scale-105 hover:shadow-xl w-full sm:w-auto"
                     >
                         Get In Touch
                         <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />

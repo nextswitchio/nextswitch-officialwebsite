@@ -52,7 +52,7 @@ const services = [
 const Services = () => {
     return (
         <section className="bg-[#f5f5f5] py-20 lg:py-32">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="container mx-auto px-4 lg:px-12">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
                     <div className="max-w-2xl">

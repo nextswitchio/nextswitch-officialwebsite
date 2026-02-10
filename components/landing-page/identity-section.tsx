@@ -32,14 +32,14 @@ const IdentitySection = () => {
 
   return (
     <section className="relative bg-gradient-to-b from-[#00337C] to-[#000916] py-16 lg:py-24">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-10 gap-6">
           <div className="max-w-[950px]">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#F4F4F4] mb-5">
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-[#F4F4F4] mb-6">
               Our <span className="font-display italic text-[#F4F4F4">Identity</span>
             </h2>
-            <p className="text-[#F4F4F4] font-normal font-sans italic text-base leading-relaxed mb-8">
+            <p className="text-base md:text-lg lg:text-lg text-[#F4F4F4] font-normal font-sans italic leading-relaxed mb-10">
               Next Switch Ltd is at the forefront of Africa&apos;s digital revolution. We combine cutting-edge technology with deep local
               expertise to deliver solutions that transform businesses and empower communities across the continent.
             </p>
@@ -82,7 +82,7 @@ const IdentitySection = () => {
         </div>
 
         {/* Video Section */}
-        <div className="relative rounded-2xl overflow-hidden bg-card border border-border/30 shadow-2xl shadow-black/30  h-[373px] mx-auto group">
+        <div className="relative rounded-2xl overflow-hidden bg-card border border-border/30 shadow-2xl shadow-black/30 h-[373px] md:h-[480px] lg:h-[600px] mx-auto group">
           <video
             ref={videoRef}
             src="/videos/video1.mp4"
@@ -107,13 +107,13 @@ const IdentitySection = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16 mt-16 lg:mt-20 max-w-4xl mx-auto text-center text-white ">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 lg:gap-20 mt-20 lg:mt-24 max-w-5xl mx-auto text-center text-white">
           {stats.map((stat, index) => (
             <div key={index} className="relative">
-              <div className="text-5xl lg:text-7xl font-light font-sans text-white mb-2 tracking-tight">
+            <div className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-2 tracking-tight">
                 {stat.value}
               </div>
-              <div className="text-[#F4F4F4] text-base lg:text-lg">{stat.label}</div>
+              <div className="text-white/80 text-sm md:text-base lg:text-lg">{stat.label}</div>
             </div>
           ))}
         </div>

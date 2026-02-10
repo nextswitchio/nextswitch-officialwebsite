@@ -54,7 +54,7 @@ const values = [
 const OurValues = () => {
     return (
         <section className="bg-[#f9f9f9] py-16 lg:py-24">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="container mx-auto px-4 lg:px-12">
                 <div className="grid grid-cols-1 justify-center items-center lg:grid-cols-12 gap-12 lg:gap-16 ">
 
                     {/* Left Side - Image with Overlay */}
@@ -64,6 +64,7 @@ const OurValues = () => {
                                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                                 alt="Team collaborating"
                                 fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover"
                             />
 
@@ -82,6 +83,7 @@ const OurValues = () => {
                                                 src={src}
                                                 alt="Member"
                                                 fill
+                                                sizes="32px"
                                                 className="object-cover"
                                             />
                                         </div>

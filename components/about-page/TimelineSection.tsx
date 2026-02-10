@@ -28,8 +28,8 @@ const timelineData = [
 const TimelineSection = () => {
   return (
     <section className="bg-black py-20 lg:py-32 overflow-hidden text-white">
-      <div className="container mx-auto px-4 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-semibold mb-20 md:mb-32">Our Story</h2>
+      <div className="container mx-auto px-4 lg:px-12">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-16 md:mb-24 text-white leading-tight">Our Story</h2>
 
         <div className="relative max-w-5xl mx-auto">
           {/* Vertical Line with Gradient */}
@@ -45,7 +45,7 @@ const TimelineSection = () => {
               >
                 {/* Year Side */}
                 <div className={`w-1/2 flex ${item.align === "left" ? "justify-start" : "justify-end"}`}>
-                  <span className="text-3xl md:text-4xl font-medium tracking-wide">
+                  <span className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-white">
                     {item.year}
                   </span>
                 </div>

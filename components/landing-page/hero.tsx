@@ -12,7 +12,7 @@ const HeroSection = () => {
       <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-[100px] animate-aurora-pulse" />
 
       {/* Content */}
-      <div className="relative container mx-auto px-6 py-24 md:py-36">
+      <div className="relative container mx-auto px-6 lg:px-12 py-24 md:py-36">
         <div className="max-w-3xl">
           {/* Badge */}
           <div
@@ -24,16 +24,16 @@ const HeroSection = () => {
 
           {/* Main Heading */}
           <h1
-            className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-2 animate-fade-in-up text-white " style={{ animationDelay: '0.2s' }}>Lightning Africa</h1>
+            className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-4 animate-fade-in-up text-white font-sans" style={{ animationDelay: '0.2s' }}>Lightning Africa</h1>
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-8 animate-fade-in-up"
+            className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-8 animate-fade-in-up font-sans"
             style={{ animationDelay: '0.3s' }}>
             Building the <span className="font-display text-[#01FFF0] italic">Future</span>
           </h2>
 
           {/* Description */}
           <p
-            className="text-lg text-white max-w-2xl mb-10 leading-relaxed animate-fade-in-up"
+            className="text-base md:text-lg lg:text-xl text-white max-w-2xl mb-12 leading-relaxed animate-fade-in-up font-normal"
             style={{ animationDelay: '0.4s' }}
           >
             We&apos;re a forward-thinking African technology company focused on innovation, digital
@@ -42,15 +42,15 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-wrap gap-4 animate-fade-in-up"
+            className="flex flex-col sm:flex-row gap-4 animate-fade-in-up w-full sm:w-auto"
             style={{ animationDelay: '0.5s' }}
           >
-            <Button variant="default" size="lg" className=" text-[#040404] bg-gradient-to-r from-[#006FF5] to-[#01FFF0] rounded-full w-full md:w-auto ">
+            <Button variant="default" size="lg" className="text-[#040404] bg-gradient-to-r from-[#006FF5] to-[#01FFF0] rounded-full sm:w-auto w-full hover:scale-105 hover:shadow-xl transition-all">
               Explore Our Solutions
               <ArrowRight className="w-5 h-5" />
             </Button>
 
-            <Button variant="default" size="lg" className="  bg-transparent border-[#F4F4F4] border hover:bg-[#F4F4F4]/20 rounded-full w-full md:w-auto">
+            <Button variant="default" size="lg" className="bg-transparent border-[#F4F4F4] border hover:bg-[#F4F4F4]/10 rounded-full sm:w-auto w-full transition-all">
               Partner with Us
               <ArrowUpRight className="w-5 h-5" />
             </Button>

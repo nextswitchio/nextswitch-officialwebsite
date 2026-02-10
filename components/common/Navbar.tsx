@@ -67,7 +67,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-100 bg-white/90 backdrop-blur-xl border-b border-gray-100/50">
-      <div className="container mx-auto px-6 h-18 lg:h-22 flex items-center justify-between">
+      <div className="container mx-auto px-4 lg:px-12 h-18 lg:h-22 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 relative z-110">
           <div className="relative w-8 h-8 md:w-10 md:h-10">
@@ -89,7 +89,7 @@ const Navbar = () => {
             <div key={item.href} className="relative group py-4">
               <Link
                 href={item.href}
-                className={`flex items-center gap-1 transition-all duration-300 font-semibold text-base ${isActive(item.href)
+                className={`flex items-center gap-1 transition-all duration-300 font-medium text-sm md:text-base ${isActive(item.href)
                   ? "text-[#006FF5]"
                   : "text-gray-600 hover:text-[#006FF5]"
                   }`}

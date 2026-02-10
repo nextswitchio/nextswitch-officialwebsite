@@ -42,16 +42,16 @@ const values = [
 const ValuesSection = () => {
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-b from-[#00337C] to-[#000916]">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-base font-light italic text-[#01FFF0] mb-4">
             Our Core Values
           </h2>
-          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h3 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight">
             What <span className="font-display italic">Drives</span> Us
           </h3>
-          <p className="text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white/70 max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
             Our values are the foundation of everything we do. They guide our decisions,
             shape our culture, and define how we work with our clients and each other.
           </p>
@@ -70,7 +70,7 @@ const ValuesSection = () => {
               </div>
 
               {/* Content */}
-              <h4 className="text-xl font-semibold text-white mb-3">
+              <h4 className="text-lg md:text-xl font-semibold text-white mb-4">
                 {value.title}
               </h4>
               <p className="text-white/60 leading-relaxed">

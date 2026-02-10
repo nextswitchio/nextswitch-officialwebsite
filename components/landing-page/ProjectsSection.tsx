@@ -71,9 +71,9 @@ const ProjectsSection = () => {
 
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-[#3B5BDB] via-[#5C7CFA] to-[#E8590C]">
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 lg:px-12 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 relative">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 lg:mb-20 gap-8 relative">
           <div className="max-w-xl">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4">
               Projects

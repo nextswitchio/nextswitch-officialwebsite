@@ -27,19 +27,19 @@ const ConnectSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-2xl">
+      <div className="container mx-auto px-4 lg:px-12 relative z-10">
+        <div className="max-w-3xl">
           {/* Heading with italic "Connect" */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light font-sans text-white mb-4">
-            <span className="italic font-display">Connect </span> With Us
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-light font-sans text-white mb-6 leading-tight">
+            <span className="font-display italic text-white">Connect </span>With Us
           </h2>
 
-          <p className="text-white text-xl mb-10">
+          <p className="text-base md:text-lg lg:text-xl text-white/90 mb-12 leading-relaxed">
             Get the latest insights, trends, and updates from Next Switch
           </p>
 
           {/* Newsletter Form */}
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row max-w-xl gap-3 sm:gap-0">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row w-full max-w-xl gap-3 sm:gap-0">
             <Input
               type="email"
               placeholder="Email"
@@ -50,7 +50,7 @@ const ConnectSection = () => {
             />
             <Button
               type="submit"
-              className="h-12 sm:h-14 px-6 sm:px-8 bg-[#006FF5] hover:bg-[#0051c7]/90 text-primary-foreground rounded-lg sm:rounded-none gap-2 shrink-0"
+              className="h-11 md:h-12 px-6 md:px-8 bg-gradient-to-r from-[#00AEEF] to-[#01F9C6] hover:from-[#0099d8] hover:to-[#00e0b8] text-[#001F3F] font-semibold rounded-lg sm:rounded-none gap-2 shrink-0 border-none transition-all hover:shadow-lg"
             >
               Subscribe
               <ArrowRight className="w-4 h-4" />
