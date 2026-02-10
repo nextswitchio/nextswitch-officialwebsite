@@ -15,7 +15,7 @@ const CTASection = () => {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60" />
 
-      <div className="container mx-auto px-4 lg:px-8 relative">
+      <div className="container mx-auto px-4 lg:px-12 relative">
         <div className="max-w-2xl">
           {/* Heading */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans text-white mb-4">

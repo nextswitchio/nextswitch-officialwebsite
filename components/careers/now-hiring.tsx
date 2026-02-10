@@ -47,7 +47,7 @@ const NowHiring = () => {
 
     return (
         <section className="bg-[#f5f5f5] py-16 lg:py-24">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="container mx-auto px-4 lg:px-12">
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <p className="text-[#006FF5] font-semibold uppercase tracking-wide mb-3">

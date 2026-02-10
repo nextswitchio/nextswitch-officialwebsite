@@ -9,7 +9,7 @@ const stats = [
 const OurIdeas = () => {
     return (
         <section className="bg-[#f0f0f0] py-16 lg:py-24">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="container mx-auto px-4 lg:px-12">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     {/* Left Side - Image */}
                     <div className="relative">
@@ -18,6 +18,7 @@ const OurIdeas = () => {
                                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop"
                                 alt="Creative workspace with brainstorming wall"
                                 fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover"
                             />
                         </div>
@@ -26,7 +27,7 @@ const OurIdeas = () => {
                     {/* Right Side - Content */}
                     <div>
                         {/* Heading */}
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight mb-6">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight mb-8">
                             We are intentional<br />
                             about your <span className="text-[#f5a623]">ideas</span>
                         </h2>

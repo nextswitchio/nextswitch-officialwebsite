@@ -31,7 +31,7 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="container mx-auto px-4 lg:px-12 relative z-10">
                 <div className="max-w-3xl">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
@@ -40,14 +40,14 @@ const Hero = () => {
                     </div>
 
                     {/* Heading */}
-                    <h1 className="text-5xl md:text-6xl lg:text-[80px] font-medium text-white leading-[1.1] mb-6 tracking-tight">
+                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-white leading-tight mb-8 tracking-tight">
                         Build the <span className="text-[#00e5ff] italic font-serif">future</span>
                         <br />
                         with us
                     </h1>
 
                     {/* Description */}
-                    <p className="text-white/70 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
+                    <p className="text-white/80 text-base md:text-lg lg:text-xl max-w-2xl mb-12 leading-relaxed">
                         Join Next Switch and work with the best. We're looking for smart,
                         creative, and forward-thinking people.
                     </p>

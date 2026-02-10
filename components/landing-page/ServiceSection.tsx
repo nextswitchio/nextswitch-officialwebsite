@@ -47,7 +47,7 @@ const ServicesSection = () => {
 
   return (
     <section className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         {/* Header */}
         <div className="mb-10 md:mb-16 lg:mb-20">
           <h2 className="text-base md:text-lg lg:text-xl font-light italic font-sans text-[#040404] mb-2 md:mb-4">
@@ -63,15 +63,14 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`group grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr_auto] gap-2 lg:gap-8 items-center py-6 lg:py-12 border-b border-[#040404]/10 cursor-pointer transition-all ${index === 0 ? "border-t" : ""
-                }`}
+              className={`group grid grid-cols-1 lg:grid-cols-[1fr_1.5fr_1fr_auto] gap-4 lg:gap-8 items-center py-8 lg:py-14 border-b border-[#040404]/10 cursor-pointer transition-all ${index === 0 ? "border-t" : ""}`}
               onMouseEnter={() => setHoveredId(service.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => toggleExpand(service.id)}
             >
               {/* Service Title */}
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl lg:text-2xl font-semibold text-[#040404]">
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-[#040404]">
                   {service.title}
                 </h3>
                 {/* Mobile View Details Trigger */}

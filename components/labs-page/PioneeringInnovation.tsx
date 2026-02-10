@@ -108,6 +108,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             src={project.image}
             alt={project.title}
             fill
+            sizes="(max-width: 768px) 100vw, 400px"
             className="object-cover"
           />
         </div>
@@ -119,13 +120,13 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 const PioneeringInnovation = () => {
   return (
     <section className="py-16 lg:py-24 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         {/* Header */}
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#040404] mb-2">
+        <div className="mb-16 lg:mb-20">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#040404] mb-3 leading-tight">
             Pioneering Innovation
           </h2>
-          <p className="text-[#040404]/60 text-base">
+          <p className="text-[#040404]/70 text-base md:text-lg leading-relaxed">
             Curated List of Projects
           </p>
         </div>

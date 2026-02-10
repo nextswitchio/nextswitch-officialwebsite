@@ -181,7 +181,7 @@ export default function OurStories() {
 
     return (
         <section className="bg-white pb-20 lg:pb-32">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="container mx-auto px-4 lg:px-12">
                 <EnquiryCard />
 
                 {/* Header Section */}

@@ -43,13 +43,13 @@ const ResearchDevelopment = () => {
 
   return (
     <section className="py-16 lg:py-24 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#040404] mb-2">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#040404] mb-3 leading-tight">
             Research & Development
           </h2>
-          <p className="text-[#040404]/60 text-base font-display italic">
+          <p className="text-[#040404]/70 text-base md:text-lg leading-relaxed font-display italic">
             Spearheading Innovative Technological Horizons
           </p>
         </div>

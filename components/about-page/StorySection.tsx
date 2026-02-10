@@ -3,7 +3,7 @@ import Image from "next/image";
 const StorySection = () => {
   return (
     <section id="story" className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Image */}
           <div className="relative">
@@ -16,9 +16,9 @@ const StorySection = () => {
                 className="w-full h-[500px] object-cover"
               />
               {/* Floating Stats Card */}
-              <div className="absolute -bottom-8 -right-8 bg-gradient-to-r from-[#006FF5] to-[#01FFF0] text-white p-6 rounded-2xl shadow-xl">
-                <div className="text-4xl font-bold mb-1">10+</div>
-                <div className="text-sm opacity-90">Years of Innovation</div>
+              <div className="absolute -bottom-8 -right-8 bg-gradient-to-r from-[#006FF5] to-[#01FFF0] text-white p-6 lg:p-8 rounded-2xl shadow-xl">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">10+</div>
+                <div className="text-xs md:text-sm opacity-90">Years of Innovation</div>
               </div>
             </div>
           </div>
@@ -28,11 +28,11 @@ const StorySection = () => {
             <h2 className="text-base font-light italic text-[#006FF5] mb-4">
               Our Story
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-[#040404] mb-6">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#040404] mb-8 leading-tight">
               Building Tomorrow's{" "}
               <span className="font-display italic">Solutions</span> Today
             </h3>
-            <div className="space-y-4 text-[#040404]/70 leading-relaxed">
+            <div className="space-y-6 text-[#040404]/70 leading-relaxed text-base md:text-lg">
               <p>
                 Founded with a vision to transform Africa's digital landscape, Next Switch
                 has grown from a small startup to a leading technology company serving

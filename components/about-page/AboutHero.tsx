@@ -18,7 +18,7 @@ const AboutHero = () => {
       {/* Gradient Overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/10 to-transparent z-0" />
 
-      <div className="container relative mx-auto px-4 lg:px-8 z-10">
+      <div className="container relative mx-auto px-4 lg:px-12 z-10\">
         <div className="max-w-4xl">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-8">
@@ -27,16 +27,16 @@ const AboutHero = () => {
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-normal text-white mb-10 leading-[1.15] tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-7xl font-semibold text-white mb-12 leading-tight tracking-tight">
             Join us in Shaping
             <br />
             Africa <span className="text-[#00F0FF] font-serif italic">Ideas</span>
           </h1>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 w-full sm:w-auto">
             <Button
-              className="bg-[#00F0FF] hover:bg-[#00d0de] text-black font-semibold rounded-full px-8 h-12 text-base"
+              className="bg-[#00F0FF] hover:bg-[#00d0de] text-black font-semibold rounded-full px-8 h-12 text-base border-none transition-all hover:shadow-lg"
             >
               Explore Our Solutions
               <ArrowRight className="ml-2 w-4 h-4" />

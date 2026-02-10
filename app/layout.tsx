@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import Script from 'next/script';
 import { montserrat, playfairDisplay } from "@/lib/fonts";
 import "./globals.css";
 
@@ -21,7 +22,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}>
+        <Script
+          id="strip-ext-attrs"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              try {
+                const attrs = ['data-gr-ext-installed', 'data-new-gr-c-s-check-loaded'];
+                attrs.forEach((a) => {
+                  try {
+                    document.documentElement.removeAttribute(a);
+                    if (document.body) document.body.removeAttribute(a);
+                    document.querySelectorAll('*').forEach((el) => {
+                      if (el.hasAttribute && el.hasAttribute(a)) el.removeAttribute(a);
+                    });
+                  } catch (e) {}
+                });
+              } catch (e) {}
+            })();`,
+          }}
+        />
         <Navbar />
         {children}
         <Footer />

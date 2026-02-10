@@ -44,10 +44,16 @@ const benefits = [
 const WhyJoinUs = () => {
     return (
         <section className="bg-white py-16 lg:py-24">
-            <div className="container mx-auto px-4 lg:px-8">
+            <div className="container mx-auto px-4 lg:px-12">
                 {/* Header */}
-                <div className="mb-16 max-w-2xl">
-                    <p className="text-orange-500 font-medium uppercase tracking-wide mb-3">
+                <div className="mb-20 max-w-3xl">
+                    <p className="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-4">
+                        Why Join Us
+                    </p>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a1a2e] mb-6 leading-tight">
+                        Experience the Next Switch Difference
+                    </h2>
+                    <p className="text-[#1a1a2e]/70 text-base md:text-lg leading-relaxed">
                         WHY JOIN US
                     </p>
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1a1a2e] mb-6 leading-tight">
@@ -73,6 +79,7 @@ const WhyJoinUs = () => {
                                         src={item.image}
                                         alt={item.title}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         className="object-cover"
                                     />
                                 </div>

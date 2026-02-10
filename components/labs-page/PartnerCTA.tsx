@@ -13,7 +13,7 @@ const PartnerCTA = () => {
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 lg:px-12 relative z-10">
         <div className="max-w-3xl">
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl lg:text-[42px] font-light text-white mb-3 tracking-tight">
