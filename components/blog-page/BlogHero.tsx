@@ -3,6 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { playfairDisplay } from "@/lib/fonts";
+import AnimatedSection from "@/components/animations/AnimatedSection";
+import AnimatedText from "@/components/animations/AnimatedText";
+import AnimatedButton from "@/components/animations/AnimatedButton";
 
 export default function BlogHero() {
     return (
@@ -23,34 +26,38 @@ export default function BlogHero() {
             <div className="container mx-auto px-4 lg:px-12 relative z-10">
                 <div className="flex flex-col items-center text-center max-w-6xl mx-auto">
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md mb-12 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-                        <span className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_#fff]"></span>
-                        <span className="text-sm font-medium text-white tracking-wide">Our Blog</span>
-                    </div>
+                    <AnimatedSection variant="fadeInScale" delay={0.1}>
+                        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md mb-12 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                            <span className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_#fff]"></span>
+                            <span className="text-sm font-medium text-white tracking-wide">Our Blog</span>
+                        </div>
+                    </AnimatedSection>
 
                     {/* Heading */}
-                    <h1 className="text-3xl md:text-4xl lg:text-6xl mb-10 leading-tight tracking-tight">
-                        <span className={`${playfairDisplay.variable} font-display italic font-normal text-[#00F5FF]`}>
-                            Blogs and Publications
-                        </span>
-                        <br />
-                        <span className="font-light text-white">for Next</span>
-                        <span className="font-semibold text-white ml-2">Switch</span>
-                    </h1>
+                    <AnimatedText 
+                        text="Blogs and Publications for Next Switch"
+                        variant="word"
+                        className="text-3xl md:text-4xl lg:text-6xl mb-10 leading-tight tracking-tight"
+                        staggerDelay={0.08}
+                    />
 
                     {/* Subheader */}
-                    <p className="text-white/80 text-base md:text-lg lg:text-xl mb-14 max-w-3xl leading-relaxed font-light">
-                        Find everything you need here- our logo, team photos, recent news, product images, and spotlights on our partners.
-                    </p>
+                    <AnimatedSection variant="fadeInUp" delay={0.4}>
+                        <p className="text-white/80 text-base md:text-lg lg:text-xl mb-14 max-w-3xl leading-relaxed font-light">
+                            Find everything you need here- our logo, team photos, recent news, product images, and spotlights on our partners.
+                        </p>
+                    </AnimatedSection>
 
                     {/* CTA Button */}
-                    <Button
-                        size="lg"
-                        className="rounded-full bg-gradient-to-r from-[#00AEEF] to-[#01F9C6] text-[#001F3F] font-semibold px-8 py-3 h-auto text-base md:text-lg border-none transition-all hover:scale-105 hover:shadow-xl w-full sm:w-auto"
-                    >
-                        Get In Touch
-                        <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
-                    </Button>
+                    <AnimatedSection variant="fadeInUp" delay={0.5}>
+                        <AnimatedButton
+                            variant="cta"
+                            className="rounded-full bg-gradient-to-r from-[#00AEEF] to-[#01F9C6] text-[#001F3F] font-semibold px-8 py-3 h-auto text-base md:text-lg border-none w-full sm:w-auto"
+                        >
+                            Get In Touch
+                            <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
+                        </AnimatedButton>
+                    </AnimatedSection>
                 </div>
             </div>
         </section>

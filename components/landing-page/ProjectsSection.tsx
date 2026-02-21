@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -36,15 +37,41 @@ const ProjectsSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
-    skipSnaps: false
+    skipSnaps: false,
+    // Spring physics configuration for smooth, natural transitions
+    duration: 25, // Duration in frames (at 60fps, 25 frames ≈ 417ms)
+    dragFree: false,
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
+  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollPrev();
+      // Pause auto-play on user interaction
+      setIsAutoPlaying(false);
+    }
+  }, [emblaApi]);
+  
+  const scrollNext = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollNext();
+      // Pause auto-play on user interaction
+      setIsAutoPlaying(false);
+    }
+  }, [emblaApi]);
+  
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) {
+      emblaApi.scrollTo(index);
+      // Pause auto-play on user interaction
+      setIsAutoPlaying(false);
+    }
+  }, [emblaApi]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -69,6 +96,40 @@ const ProjectsSection = () => {
     };
   }, [emblaApi, onSelect]);
 
+  // Auto-play functionality
+  useEffect(() => {
+    if (!emblaApi || !isAutoPlaying) {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+      return;
+    }
+
+    // Start auto-play with 5 second interval
+    autoPlayIntervalRef.current = setInterval(() => {
+      if (!isHovering) {
+        emblaApi.scrollNext();
+      }
+    }, 5000);
+
+    return () => {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+    };
+  }, [emblaApi, isAutoPlaying, isHovering]);
+
+  // Handle hover to pause auto-play
+  const handleMouseEnter = useCallback(() => {
+    setIsHovering(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+  }, []);
+
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-[#3B5BDB] via-[#5C7CFA] to-[#E8590C]">
       <div className="container mx-auto px-4 lg:px-12 relative z-10">
@@ -85,25 +146,36 @@ const ProjectsSection = () => {
 
           {/* Navigation Arrows (Desktop) */}
           <div className="hidden md:flex items-center gap-4">
-            <button
+            <motion.button
               onClick={scrollPrev}
-              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all group"
+              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all group"
               aria-label="Previous slide"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <ChevronLeft className="w-6 h-6 group-active:scale-90 transition-transform" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={scrollNext}
-              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all group"
+              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all group"
               aria-label="Next slide"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <ChevronRight className="w-6 h-6 group-active:scale-90 transition-transform" />
-            </button>
+            </motion.button>
           </div>
         </div>
 
         {/* Carousel Viewport */}
-        <div className="overflow-visible" ref={emblaRef}>
+        <div 
+          className="overflow-visible" 
+          ref={emblaRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <div className="flex -ml-4 md:-ml-6">
             {projects.map((project, index) => (
               <div
@@ -165,18 +237,24 @@ const ProjectsSection = () => {
 
           {/* Mobile Navigation Arrows */}
           <div className="flex md:hidden items-center gap-6">
-            <button
+            <motion.button
               onClick={scrollPrev}
               className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={scrollNext}
               className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <ChevronRight className="w-6 h-6" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

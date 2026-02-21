@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Star, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
@@ -34,18 +35,59 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
+  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const nextTestimonial = () => {
+  const nextTestimonial = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
+    // Pause auto-play on user interaction
+    setIsAutoPlaying(false);
+  }, []);
 
-  const prevTestimonial = () => {
+  const prevTestimonial = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+    // Pause auto-play on user interaction
+    setIsAutoPlaying(false);
+  }, []);
 
   const getCardIndex = (offset: number) => {
     return (currentIndex + offset + testimonials.length) % testimonials.length;
   };
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+      return;
+    }
+
+    // Start auto-play with 6 second interval
+    autoPlayIntervalRef.current = setInterval(() => {
+      if (!isHovering) {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }
+    }, 6000);
+
+    return () => {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+    };
+  }, [isAutoPlaying, isHovering]);
+
+  // Handle hover to pause auto-play
+  const handleMouseEnter = useCallback(() => {
+    setIsHovering(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+  }, []);
 
   return (
     <section className="py-20 relative overflow-hidden">
@@ -64,18 +106,29 @@ const TestimonialsSection = () => {
         </h2>
 
         {/* Testimonial Cards Container */}
-        <div className="relative flex flex-col items-center max-w-6xl mx-auto">
+        <div 
+          className="relative flex flex-col items-center max-w-6xl mx-auto"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {/* Main Card Area */}
           <div className="relative flex items-center justify-center gap-6 lg:gap-8 w-full">
             {/* Desktop Left Arrow */}
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="hidden md:flex absolute left-0 lg:-left-16 z-10 rounded-full w-12 h-12 border-white/30 bg-transparent hover:bg-white/10 text-white hover:text-white transition-colors"
+            <motion.div
+              className="hidden md:flex absolute left-0 lg:-left-16 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={prevTestimonial}
+                className="rounded-full w-12 h-12 border-white/30 bg-transparent hover:bg-white/10 text-white hover:text-white transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+            </motion.div>
 
             {/* Cards Slider */}
             <div className="flex items-center justify-center gap-4 lg:gap-6 w-full overflow-hidden py-12 md:py-8">
@@ -92,7 +145,20 @@ const TestimonialsSection = () => {
 
               {/* Center Card (Current) */}
               <div className="flex-shrink-0 w-full max-w-[340px] md:max-w-md z-10">
-                <div className="relative bg-[#1a1a3e]/80 backdrop-blur-md rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-2xl">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 300, 
+                      damping: 25,
+                      mass: 0.8
+                    }}
+                    className="relative bg-[#1a1a3e]/80 backdrop-blur-md rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-2xl"
+                  >
                   {/* Avatar - Centered and overlapping top */}
                   <div className="absolute -top-10 left-1/2 -translate-x-1/2">
                     <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#1a1a3e] shadow-xl">
@@ -126,8 +192,9 @@ const TestimonialsSection = () => {
                       ))}
                     </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
               {/* Right Card (Next) - Hidden on mobile */}
               <div className="hidden md:block flex-shrink-0 w-64 lg:w-72">
@@ -142,34 +209,53 @@ const TestimonialsSection = () => {
             </div>
 
             {/* Desktop Right Arrow */}
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="hidden md:flex absolute right-0 lg:-right-16 z-10 rounded-full w-12 h-12 border-white/30 bg-transparent hover:bg-white/10 text-white hover:text-white transition-colors"
+            <motion.div
+              className="hidden md:flex absolute right-0 lg:-right-16 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={nextTestimonial}
+                className="rounded-full w-12 h-12 border-white/30 bg-transparent hover:bg-white/10 text-white hover:text-white transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile Bottom Navigation Arrows */}
           <div className="flex md:hidden items-center justify-center gap-6 mt-6">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="rounded-full w-12 h-12 border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all border"
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="rounded-full w-12 h-12 border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all border"
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={prevTestimonial}
+                className="rounded-full w-12 h-12 border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all border"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <ChevronRight className="w-6 h-6" />
-            </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={nextTestimonial}
+                className="rounded-full w-12 h-12 border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all border"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </Button>
+            </motion.div>
           </div>
         </div>
 

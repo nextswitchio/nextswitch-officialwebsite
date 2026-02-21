@@ -3,6 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Code, Smartphone, GraduationCap, Lightbulb, Layers, Network, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { AnimatedCard } from "@/components/animations/AnimatedCard";
+import { StaggerContainer } from "@/components/animations/StaggerContainer";
+import { motion, type Variants } from "framer-motion";
+import { fadeInUp } from "@/lib/animations/variants";
 
 const services = [
     {
@@ -72,37 +76,46 @@ const Services = () => {
                 </div>
 
                 {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <StaggerContainer 
+                    staggerDelay={0.15}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+                >
                     {services.map((service, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="p-8 rounded-2xl transition-all duration-300 flex flex-col items-start gap-6 group relative bg-white text-[#1a1a2e] hover:bg-[#0b0b1e] hover:text-white hover:rotate-[-4deg] hover:shadow-xl border border-transparent hover:border-gray-100/10"
+                            variants={fadeInUp as Variants}
                         >
-                            <div className="p-0 text-[#1a1a2e] group-hover:text-white transition-colors duration-300">
-                                <service.icon strokeWidth={1.5} className="w-8 h-8" />
-                            </div>
+                            <AnimatedCard
+                                className="p-8 rounded-2xl transition-all duration-300 flex flex-col items-start gap-6 group relative bg-white text-[#1a1a2e] hover:bg-[#0b0b1e] hover:text-white hover:rotate-[-4deg] border border-transparent hover:border-gray-100/10"
+                                hoverLift={true}
+                                imageZoom={false}
+                            >
+                                <div className="p-0 text-[#1a1a2e] group-hover:text-white transition-colors duration-300">
+                                    <service.icon strokeWidth={1.5} className="w-8 h-8" />
+                                </div>
 
-                            <div>
-                                <h3 className="text-2xl font-semibold mb-4 text-[#1a1a2e] group-hover:text-white transition-colors duration-300">
-                                    {service.title}
-                                </h3>
-                                <p className="text-sm leading-relaxed mb-8 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">
-                                    {service.description}
-                                </p>
-                            </div>
+                                <div>
+                                    <h3 className="text-2xl font-semibold mb-4 text-[#1a1a2e] group-hover:text-white transition-colors duration-300">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-sm leading-relaxed mb-8 text-gray-600 group-hover:text-gray-300 transition-colors duration-300">
+                                        {service.description}
+                                    </p>
+                                </div>
 
-                            <div className="mt-auto">
-                                <Link
-                                    href={`/services/${service.slug}`}
-                                    className="inline-flex items-center text-sm font-medium transition-colors text-gray-500 hover:text-[#006FF5] group-hover:text-white/70 group-hover:hover:text-white"
-                                >
-                                    Learn more
-                                    <ChevronRight className="w-4 h-4 ml-1" />
-                                </Link>
-                            </div>
-                        </div>
+                                <div className="mt-auto">
+                                    <Link
+                                        href={`/services/${service.slug}`}
+                                        className="inline-flex items-center text-sm font-medium transition-colors text-gray-500 hover:text-[#006FF5] group-hover:text-white/70 group-hover:hover:text-white"
+                                    >
+                                        Learn more
+                                        <ChevronRight className="w-4 h-4 ml-1" />
+                                    </Link>
+                                </div>
+                            </AnimatedCard>
+                        </motion.div>
                     ))}
-                </div>
+                </StaggerContainer>
             </div>
         </section>
     );

@@ -5,6 +5,9 @@ import { Search, MoveDown, Mail, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import AnimatedCard from "@/components/animations/AnimatedCard";
+import AnimatedSection from "@/components/animations/AnimatedSection";
+import StaggerContainer from "@/components/animations/StaggerContainer";
 
 const EnquiryCard = () => {
     return (
@@ -185,61 +188,72 @@ export default function OurStories() {
                 <EnquiryCard />
 
                 {/* Header Section */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20">
-                    <div className="max-w-xl">
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-5">
-                            Our Stories
-                        </h2>
-                        <p className="text-gray-500 text-lg md:text-xl">
-                            Everything you need to know about what we do
-                        </p>
-                    </div>
-
-                    <div className="flex items-center gap-4 bg-white w-full md:w-auto">
-                        <div className="relative flex-1 md:w-96">
-                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
-                            <input
-                                type="text"
-                                placeholder="Search blog"
-                                className="w-full pl-14 pr-6 py-4 rounded-2xl border border-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-black text-lg"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
+                <AnimatedSection variant="fadeInUp">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20">
+                        <div className="max-w-xl">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-5">
+                                Our Stories
+                            </h2>
+                            <p className="text-gray-500 text-lg md:text-xl">
+                                Everything you need to know about what we do
+                            </p>
                         </div>
-                        <Button className="bg-[#006FF5] hover:bg-blue-600 text-white rounded-2xl px-10 py-4 h-auto text-lg font-bold shadow-lg shadow-blue-500/20">
-                            Search
-                        </Button>
-                    </div>
-                </div>
 
-                {/* Blog Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
-                    {blogPosts.map((post) => (
-                        <article key={post.id} className="group cursor-pointer">
-                            <div className="relative aspect-4/3 rounded-[2rem] overflow-hidden mb-8 shadow-sm">
-                                <Image
-                                    src={post.image}
-                                    alt={post.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        <div className="flex items-center gap-4 bg-white w-full md:w-auto">
+                            <div className="relative flex-1 md:w-96">
+                                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
+                                <input
+                                    type="text"
+                                    placeholder="Search blog"
+                                    className="w-full pl-14 pr-6 py-4 rounded-2xl border border-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-black text-lg"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                             </div>
+                            <Button className="bg-[#006FF5] hover:bg-blue-600 text-white rounded-2xl px-10 py-4 h-auto text-lg font-bold shadow-lg shadow-blue-500/20">
+                                Search
+                            </Button>
+                        </div>
+                    </div>
+                </AnimatedSection>
 
-                            <div className="flex items-center justify-between text-base mb-4 font-medium">
-                                <span className="text-gray-400 group-hover:text-[#006FF5] transition-colors">{post.category}</span>
-                                <span className="text-gray-400">{post.date}</span>
-                            </div>
+                {/* Blog Grid */}
+                <StaggerContainer staggerDelay={0.1}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
+                        {blogPosts.map((post) => (
+                            <AnimatedCard 
+                                key={post.id} 
+                                hoverLift 
+                                imageZoom
+                                className="group cursor-pointer"
+                            >
+                                <article>
+                                    <div className="relative aspect-4/3 rounded-[2rem] overflow-hidden mb-8 shadow-sm">
+                                        <Image
+                                            src={post.image}
+                                            alt={post.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
 
-                            <h3 className="text-2xl font-bold text-black mb-4 leading-tight group-hover:text-[#006FF5] transition-colors">
-                                {post.title}
-                            </h3>
+                                    <div className="flex items-center justify-between text-base mb-4 font-medium">
+                                        <span className="text-gray-400 group-hover:text-[#006FF5] transition-colors">{post.category}</span>
+                                        <span className="text-gray-400">{post.date}</span>
+                                    </div>
 
-                            <p className="text-gray-500 text-lg font-medium">
-                                {post.author}
-                            </p>
-                        </article>
-                    ))}
-                </div>
+                                    <h3 className="text-2xl font-bold text-black mb-4 leading-tight group-hover:text-[#006FF5] transition-colors">
+                                        {post.title}
+                                    </h3>
+
+                                    <p className="text-gray-500 text-lg font-medium">
+                                        {post.author}
+                                    </p>
+                                </article>
+                            </AnimatedCard>
+                        ))}
+                    </div>
+                </StaggerContainer>
 
                 {/* Load More */}
                 <div className="mt-24 flex justify-center">

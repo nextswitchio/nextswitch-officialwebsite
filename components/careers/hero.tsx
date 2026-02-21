@@ -3,6 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import AnimatedSection from "@/components/animations/AnimatedSection";
+import AnimatedText from "@/components/animations/AnimatedText";
+import AnimatedButton from "@/components/animations/AnimatedButton";
 
 const Hero = () => {
     return (
