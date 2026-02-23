@@ -4,6 +4,9 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { AnimatedCard } from "@/components/animations/AnimatedCard";
+import { StaggerContainer } from "@/components/animations/StaggerContainer";
+import { motion, type Variants } from "framer-motion";
 
 const teamMembers = [
   {
@@ -29,6 +32,21 @@ const teamMembers = [
   },
 ];
 
+const fadeInUp: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.5, 
+      ease: "easeOut" 
+    }
+  }
+};
+
 const TeamSection = () => {
   const [activeMember, setActiveMember] = useState(teamMembers[0]);
 
@@ -41,22 +59,23 @@ const TeamSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-start max-w-6xl mx-auto">
           {/* Left Side - Large Image */}
-          <div className="relative aspect-4/5 w-full h-[500px] overflow-hidden rounded-xl">
+          <AnimatedCard hoverLift={false} imageZoom={false} className="relative aspect-4/5 w-full h-[500px] overflow-hidden rounded-xl">
             <Image
               src={activeMember.image}
               alt={activeMember.name}
               fill
               className="object-cover transition-opacity duration-500"
             />
-          </div>
+          </AnimatedCard>
 
           {/* Right Side - Content */}
           <div className="flex flex-col h-full">
             {/* Thumbnails */}
-            <div className="grid grid-cols-3 gap-4 mb-10">
+            <StaggerContainer staggerDelay={0.1} className="grid grid-cols-3 gap-4 mb-10">
               {teamMembers.map((member) => (
-                <button
+                <motion.button
                   key={member.id}
+                  variants={fadeInUp}
                   onClick={() => setActiveMember(member)}
                   className={`relative aspect-square cursor-pointer overflow-hidden transition-all duration-300 w-full p-0 border-0 ${activeMember.id === member.id ? 'opacity-100 ring-2 ring-white/50' : 'opacity-60 hover:opacity-100'
                     }`}
@@ -67,9 +86,9 @@ const TeamSection = () => {
                     fill
                     className="object-cover grayscale"
                   />
-                </button>
+                </motion.button>
               ))}
-            </div>
+            </StaggerContainer>
 
             {/* Info */}
             <h3 className="text-3xl md:text-4xl font-semibold mb-6">

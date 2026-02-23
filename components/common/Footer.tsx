@@ -74,9 +74,9 @@ const Footer = () => {
   return (
     <footer className="bg-black py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Company Info */}
-          <div className="lg:col-span-5">
+          <div>
             <div className="flex items-center gap-3 mb-6">
               {/* Logo Icon */}
               <Image
@@ -91,52 +91,52 @@ const Footer = () => {
               We empower African startups and entrepreneurs by building innovative tech
               solutions tailored for local challenges and global opportunities.
             </p>
+          </div>
 
-            {/* Links Section */}
-            <div className="mt-10">
-              <h3 className="text-white font-semibold mb-4">Links</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-gray-400 hover:text-white text-sm transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Connect with us Section */}
-            <div className="mt-10">
-              <h3 className="text-white font-semibold mb-4">Connect with us</h3>
-              <a
-                href="mailto:hello@nextswitch.org"
-                className="text-gray-400 hover:text-white text-sm transition-colors block mb-4"
-              >
-                hello@nextswitch.org
-              </a>
-              <div className="flex items-center gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-gray-400 transition-colors"
-                    aria-label={social.label}
+          {/* Links Section */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Links</h3>
+            <ul className="space-y-2">
+              {links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-white text-sm transition-colors"
                   >
-                    <social.icon />
-                  </a>
-                ))}
-              </div>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect with us Section */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Connect with us</h3>
+            <a
+              href="mailto:hello@nextswitch.org"
+              className="text-gray-400 hover:text-white text-sm transition-colors block mb-4"
+            >
+              hello@nextswitch.org
+            </a>
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-400 transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Newsletter - Right side */}
-          <div className="lg:col-span-7 flex items-start justify-end">
+          {/* Newsletter Section */}
+          <div>
             <form onSubmit={handleSubmit} className="flex w-full max-w-md">
               <Input
                 type="email"

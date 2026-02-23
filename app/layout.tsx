@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Script from 'next/script';
 import { montserrat, playfairDisplay } from "@/lib/fonts";
 import "./globals.css";
+import { MotionProvider } from "@/lib/animations/MotionProvider";
 
 
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import { PageTransition } from "@/components/animations/PageTransition";
 
 export default function RootLayout({
   children,
@@ -44,9 +46,13 @@ export default function RootLayout({
             })();`,
           }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

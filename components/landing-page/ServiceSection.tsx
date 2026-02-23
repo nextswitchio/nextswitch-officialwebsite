@@ -3,6 +3,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
 
 const services = [
   {
@@ -49,14 +50,16 @@ const ServicesSection = () => {
     <section className="py-20 lg:py-28 bg-white">
       <div className="container mx-auto px-4 lg:px-12">
         {/* Header */}
-        <div className="mb-10 md:mb-16 lg:mb-20">
-          <h2 className="text-base md:text-lg lg:text-xl font-light italic font-sans text-[#040404] mb-2 md:mb-4">
-            Our Services
-          </h2>
-          <p className="text-black font-sans font-medium text-3xl md:text-4xl lg:text-6xl leading-tight">
-            Innovation Meets Expertise
-          </p>
-        </div>
+        <AnimatedSection variant="fadeInUp">
+          <div className="mb-10 md:mb-16 lg:mb-20">
+            <h2 className="text-base md:text-lg lg:text-xl font-light italic font-sans text-[#040404] mb-2 md:mb-4">
+              Our Services
+            </h2>
+            <p className="text-black font-sans font-medium text-3xl md:text-4xl lg:text-6xl leading-tight">
+              Innovation Meets Expertise
+            </p>
+          </div>
+        </AnimatedSection>
 
         {/* Services List */}
         <div className="space-y-0">

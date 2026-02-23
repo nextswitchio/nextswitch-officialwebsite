@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import CTASection from "@/components/service-page/service-cta";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
+import { AnimatedText } from "@/components/animations/AnimatedText";
 
 // Mock Data Source
 const servicesData: Record<string, {
@@ -68,65 +70,89 @@ const ServiceDetailsPage = async ({ params }: PageProps) => {
             <main className="pt-32 pb-20 bg-white min-h-screen">
                 <div className="container mx-auto px-4 lg:px-12 max-w-7xl">
                     {/* Badge */}
-                    <div className="mb-8">
+                    <AnimatedSection variant="fadeInUp">
                         <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-medium text-gray-600">
                             <span className="w-2 h-2 rounded-full bg-black"></span>
                             {data.category}
                         </span>
-                    </div>
+                    </AnimatedSection>
 
                     {/* Title */}
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-black mb-12 leading-tight">
-                        {data.title}
-                    </h1>
+                    <AnimatedText 
+                        text={data.title}
+                        variant="word"
+                        className="text-2xl md:text-3xl lg:text-4xl font-medium text-black mb-12 leading-tight"
+                        as="h1"
+                        delay={0.2}
+                    />
 
                     {/* Hero Image */}
-                    <div className="relative w-full aspect-2/1 rounded-2xl overflow-hidden mb-12 bg-blue-500">
-                        {/* Using a solid color fallback if image loads slowly, or custom color matching reference */}
-                        <Image
-                            src={data.image}
-                            alt={data.title}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+                    <AnimatedSection variant="fadeInScale" delay={0.4}>
+                        <div className="relative w-full aspect-2/1 rounded-2xl overflow-hidden mb-12 bg-blue-500">
+                            {/* Using a solid color fallback if image loads slowly, or custom color matching reference */}
+                            <Image
+                                src={data.image}
+                                alt={data.title}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                    </AnimatedSection>
 
                     {/* Pricing & CTA Bar */}
-                    <div className="flex flex-col items-start gap-6 mb-16">
-                        <div className="flex items-center gap-4">
-                            <span className="text-gray-500 text-sm">Price range</span>
-                            <span className="text-black text-xl font-semibold">{data.priceRange}</span>
-                        </div>
+                    <AnimatedSection variant="fadeInUp" delay={0.5}>
+                        <div className="flex flex-col items-start gap-6 mb-16">
+                            <div className="flex items-center gap-4">
+                                <span className="text-gray-500 text-sm">Price range</span>
+                                <span className="text-black text-xl font-semibold">{data.priceRange}</span>
+                            </div>
 
-                        <Button className="rounded-full bg-black text-white hover:bg-gray-800 px-8 py-4 h-auto text-base">
-                            Request a quote
-                            <ArrowRight className="ml-2 w-4 h-4" />
-                        </Button>
-                    </div>
+                            <Button className="rounded-full bg-black text-white hover:bg-gray-800 px-8 py-4 h-auto text-base">
+                                Request a quote
+                                <ArrowRight className="ml-2 w-4 h-4" />
+                            </Button>
+                        </div>
+                    </AnimatedSection>
 
                     {/* Description Sections */}
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-12 max-w-4xl">
                         {/* Main Intro */}
-                        <p className="text-gray-600 text-lg leading-relaxed">
-                            {data.description}
-                        </p>
+                        <AnimatedSection variant="fadeInUp" delay={0.6}>
+                            <p className="text-gray-600 text-lg leading-relaxed">
+                                {data.description}
+                            </p>
+                        </AnimatedSection>
 
                         {/* What We Do */}
-                        <div>
-                            <h2 className="text-2xl md:text-3xl font-medium text-black mb-4">What We Do</h2>
-                            <p className="text-gray-600 text-lg leading-relaxed">
-                                {data.whatWeDo}
-                            </p>
-                        </div>
+                        <AnimatedSection variant="fadeInUp" delay={0.7}>
+                            <div>
+                                <AnimatedText 
+                                    text="What We Do"
+                                    variant="word"
+                                    className="text-2xl md:text-3xl font-medium text-black mb-4"
+                                    as="h2"
+                                />
+                                <p className="text-gray-600 text-lg leading-relaxed">
+                                    {data.whatWeDo}
+                                </p>
+                            </div>
+                        </AnimatedSection>
 
                         {/* Our Approach */}
-                        <div>
-                            <h2 className="text-2xl md:text-3xl font-medium text-black mb-4">Our Approach</h2>
-                            <p className="text-gray-600 text-lg leading-relaxed">
-                                {data.approach}
-                            </p>
-                        </div>
+                        <AnimatedSection variant="fadeInUp" delay={0.8}>
+                            <div>
+                                <AnimatedText 
+                                    text="Our Approach"
+                                    variant="word"
+                                    className="text-2xl md:text-3xl font-medium text-black mb-4"
+                                    as="h2"
+                                />
+                                <p className="text-gray-600 text-lg leading-relaxed">
+                                    {data.approach}
+                                </p>
+                            </div>
+                        </AnimatedSection>
                     </div>
                 </div>
             </main>

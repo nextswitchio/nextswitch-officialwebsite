@@ -3,15 +3,20 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import aboutherobg from '@/public/pictures/aboutherobg.png';
+import { useParallax } from "@/lib/animations/hooks/useParallax";
+import { motion } from "framer-motion";
 
 const AboutHero = () => {
+  const { ref, y } = useParallax({ speed: 0.5 });
+
   return (
-    <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-[#0A0A0A]/50">
+    <section ref={ref} className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-[#0A0A0A]/50">
       {/* Background Image with Overlay */}
-      <div
+      <motion.div
         className="absolute top-0 bottom-0 right-0 left-0 bg-cover bg-bottom z-0"
         style={{
           backgroundImage: `url(${aboutherobg.src})`,
+          y,
         }}
       />
 
