@@ -3,9 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import AnimatedSection from "@/components/animations/AnimatedSection";
-import AnimatedText from "@/components/animations/AnimatedText";
-import AnimatedButton from "@/components/animations/AnimatedButton";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
 
 const Hero = () => {
     return (
@@ -35,7 +33,7 @@ const Hero = () => {
             </div>
 
             <div className="container mx-auto px-4 lg:px-12 relative z-10">
-                <div className="max-w-3xl">
+                <AnimatedSection variant="fadeInUp" className="max-w-3xl">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
                         <span className="w-2 h-2 rounded-full bg-white"></span>
@@ -78,7 +76,7 @@ const Hero = () => {
                             </Button>
                         </Link>
                     </div>
-                </div>
+                </AnimatedSection>
             </div>
         </section>
     );

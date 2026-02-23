@@ -5,9 +5,9 @@ import { Search, MoveDown, Mail, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import AnimatedCard from "@/components/animations/AnimatedCard";
-import AnimatedSection from "@/components/animations/AnimatedSection";
-import StaggerContainer from "@/components/animations/StaggerContainer";
+import { AnimatedCard } from "@/components/animations/AnimatedCard";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
+import { StaggerContainer } from "@/components/animations/StaggerContainer";
 
 const EnquiryCard = () => {
     return (
@@ -221,9 +221,9 @@ export default function OurStories() {
                 <StaggerContainer staggerDelay={0.1}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
                         {blogPosts.map((post) => (
-                            <AnimatedCard 
-                                key={post.id} 
-                                hoverLift 
+                            <AnimatedCard
+                                key={post.id}
+                                hoverLift
                                 imageZoom
                                 className="group cursor-pointer"
                             >

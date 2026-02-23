@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { playfairDisplay } from "@/lib/fonts";
-import AnimatedSection from "@/components/animations/AnimatedSection";
-import AnimatedText from "@/components/animations/AnimatedText";
-import AnimatedButton from "@/components/animations/AnimatedButton";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
+import { AnimatedText } from "@/components/animations/AnimatedText";
+import { AnimatedButton } from "@/components/animations/AnimatedButton";
 
 export default function BlogHero() {
     return (
@@ -34,7 +34,7 @@ export default function BlogHero() {
                     </AnimatedSection>
 
                     {/* Heading */}
-                    <AnimatedText 
+                    <AnimatedText
                         text="Blogs and Publications for Next Switch"
                         variant="word"
                         className="text-3xl md:text-4xl lg:text-6xl mb-10 leading-tight tracking-tight"

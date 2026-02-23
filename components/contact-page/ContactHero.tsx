@@ -3,7 +3,7 @@ import { AnimatedText } from "@/components/animations/AnimatedText";
 
 export default function ContactHero() {
   return (
-    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-br from-[#001F3F] via-[#003366] to-[#001F3F] overflow-hidden">
+    <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-[#020824] via-[#003a80] to-[#00a3ff] overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
