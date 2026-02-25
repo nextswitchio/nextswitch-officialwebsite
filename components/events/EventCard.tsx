@@ -31,7 +31,7 @@ export const EventCard = ({
   className = "",
 }: EventCardProps) => {
   return (
-    <article className={`flex w-full max-w-xs flex-col overflow-hidden rounded-3xl bg-white shadow-[0_24px_60px_rgba(0,0,0,0.25)] ${className}`}>
+    <article className={`flex w-full max-w-xs flex-col overflow-hidden rounded-3xl bg-white shadow-[0_12px_60px_rgba(0,0,0,0.25)] ${className}`}>
       <div className="relative h-40 w-full">
         <Image
           src={imageSrc}
