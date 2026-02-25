@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { Search, MapPin, Clock } from "lucide-react";
+import { Search, MapPin, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { EventCard } from "@/components/events/EventCard";
 
 const events = [
@@ -121,27 +121,34 @@ const events = [
 const featuredEvents = events.slice(0, 3);
 
 const EventList = () => {
-  const featuredScrollRef = useRef<HTMLDivElement | null>(null);
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0);
 
-  const handleFeaturedToggle = (index: number) => {
-    setActiveFeaturedIndex(index);
-    const container = featuredScrollRef.current;
-    if (!container) return;
-    const child = container.children[index] as HTMLElement | undefined;
-    if (child) {
-      container.scrollTo({
-        left: child.offsetLeft,
-        behavior: "smooth",
-      });
-    }
+  const totalFeatured = featuredEvents.length;
+
+  const handleFeaturedPrev = () => {
+    if (!totalFeatured) return;
+    setActiveFeaturedIndex((prev) => (prev - 1 + totalFeatured) % totalFeatured);
   };
+
+  const handleFeaturedNext = () => {
+    if (!totalFeatured) return;
+    setActiveFeaturedIndex((prev) => (prev + 1) % totalFeatured);
+  };
+
+  const visibleFeatured =
+    totalFeatured === 0
+      ? []
+      : [
+        featuredEvents[activeFeaturedIndex],
+        featuredEvents[(activeFeaturedIndex + 1) % totalFeatured],
+        featuredEvents[(activeFeaturedIndex + 2) % totalFeatured],
+      ];
 
   return (
     <section className="bg-[#f3f4f6] py-12 lg:py-16">
       <div className="container mx-auto px-4 lg:px-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start">
-          
+
           <aside className="h-fit rounded-3xl bg-white p-6 shadow-sm lg:sticky lg:top-28">
             <div className="mb-6">
               <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#6b7280]">
@@ -233,35 +240,41 @@ const EventList = () => {
               </button>
             </div>
 
-            <section className="space-y-4">
-              <div className="flex items-baseline justify-between gap-4">
-                <h2 className="text-2xl md:text-3xl font-semibold text-[#111827]">
-                  Featured Events
-                </h2>
-                <div className="flex items-center gap-2">
-                  {featuredEvents.map((event, index) => (
+            {totalFeatured > 0 && (
+              <section className="space-y-4">
+                <div className="flex items-center justify-between gap-4">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-[#111827]">
+                    Featured Events
+                  </h2>
+                  <div className="inline-flex items-center gap-1 rounded-full border border-[#e5e7eb] bg-white px-1 py-1">
                     <button
-                      key={event.id}
                       type="button"
-                      onClick={() => handleFeaturedToggle(index)}
-                      className={`h-2.5 w-2.5 rounded-full border border-[#0065ff] transition-colors ${index === activeFeaturedIndex ? "bg-[#0065ff]" : "bg-transparent"
-                        }`}
-                      aria-label={`Show featured event ${index + 1}`}
-                    />
-                  ))}
+                      onClick={handleFeaturedPrev}
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-[#4b5563] hover:bg-[#f3f4f6]"
+                      aria-label="Previous featured events"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <span className="px-2 text-xs text-[#6b7280]">
+                      {activeFeaturedIndex + 1}/{totalFeatured}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleFeaturedNext}
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-[#4b5563] hover:bg-[#f3f4f6]"
+                      aria-label="Next featured events"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div
-                ref={featuredScrollRef}
-                className="flex gap-6 overflow-x-auto pb-2"
-              >
-                {featuredEvents.map((event) => (
-                  <div
-                    key={event.id}
-                    className="min-w-[260px] sm:min-w-[320px] md:min-w-[360px]"
-                  >
-                    <article className="relative h-72 overflow-hidden rounded-3xl bg-[#050616] shadow-[0_24px_60px_rgba(0,0,0,0.4)]">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {visibleFeatured.map((event) => (
+                    <article
+                      key={event.id}
+                      className="relative h-72 overflow-hidden rounded-3xl bg-[#050616] shadow-[0_24px_60px_rgba(0,0,0,0.4)]"
+                    >
                       <Image
                         src={event.imageSrc}
                         alt={event.imageAlt}
@@ -270,6 +283,7 @@ const EventList = () => {
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
                       <div className="absolute inset-5 flex flex-col justify-between">
                         <div className="flex justify-between gap-4">
                           <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-[#00e5ff] text-[#050616] shadow-lg">
@@ -280,6 +294,7 @@ const EventList = () => {
                               {event.month}
                             </span>
                           </div>
+
                           <div className="flex flex-1 flex-col items-end justify-center text-right text-xs text-white/80">
                             <div className="flex items-center gap-2">
                               <MapPin className="h-4 w-4 text-white/80" />
@@ -309,10 +324,10 @@ const EventList = () => {
                         </div>
                       </div>
                     </article>
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section className="space-y-4">
               <div>
@@ -323,7 +338,7 @@ const EventList = () => {
                   Everything you need to know about what we do.
                 </p>
               </div>
-              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {events.map((event) => (
                   <EventCard
                     key={event.id}
