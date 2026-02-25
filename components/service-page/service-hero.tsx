@@ -10,7 +10,7 @@ const ServiceHero = () => {
             {/* Background Gradient Effects */}
             <div className="absolute inset-0 z-0">
                 {/* Main Background Dark Gradient */}
-                <div className="absolute inset-0 bg-linear-to-r from-[#0d0d12] via-[#0d0d12] to-[#1a1a2e]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d12] via-[#0d0d12] to-[#1a1a2e]" />
 
                 {/* Right Side Blue Blur Effect */}
                 <div
