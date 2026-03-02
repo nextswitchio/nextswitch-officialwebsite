@@ -70,32 +70,48 @@ const Navbar = () => {
     { name: "Resources", href: "/blog" },
   ];
 
+  const handleTopLinkClick = (item: { name: string; href: string; hasDropdown?: boolean }, e: React.MouseEvent) => {
+    if (item.hasDropdown) {
+      if (hoveredDropdown !== item.name) {
+        e.preventDefault();
+        setHoveredDropdown(item.name);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const close = () => setHoveredDropdown(null);
+    document.addEventListener("click", close);
+    return () => document.removeEventListener("click", close);
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-100 bg-white/90 backdrop-blur-xl border-b border-gray-100/50">
-      <div className="container mx-auto px-4 lg:px-12 h-18 lg:h-22 flex items-center justify-between">
+      <div className="container mx-auto px-4 lg:px-12 h-16 md:h-18 lg:h-22 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 relative z-110">
-          <Image 
-            src="/next-switch-logo.png" 
-            alt="NextSwitch Logo" 
-            width={150} 
+          <Image
+            src="/next-switch-logo.png"
+            alt="NextSwitch Logo"
+            width={150}
             height={40}
-            className="h-8 md:h-10 w-auto"
+            className="h-8 md:h-9 lg:h-10 w-auto"
             priority
           />
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-6 lg:gap-10 overflow-x-auto md:max-w-[60vw] lg:max-w-none">
           {navItems.map((item) => (
-            <div 
-              key={item.href} 
+            <div
+              key={item.href}
               className="relative py-4"
               onMouseEnter={() => item.hasDropdown && setHoveredDropdown(item.name)}
               onMouseLeave={() => item.hasDropdown && setHoveredDropdown(null)}
             >
               <Link
                 href={item.href}
+                onClick={(e) => handleTopLinkClick(item, e)}
                 className={`flex items-center gap-1 transition-all duration-300 font-medium text-sm md:text-base ${isActive(item.href)
                   ? "text-[#006FF5]"
                   : "text-gray-600 hover:text-[#006FF5]"
@@ -122,7 +138,7 @@ const Navbar = () => {
                       exit="hidden"
                       variants={prefersReducedMotion ? undefined : (dropdownVariants as Variants)}
                     >
-                      <motion.div 
+                      <motion.div
                         className="bg-white border border-gray-100 rounded-2xl shadow-2xl py-4 w-72"
                         variants={prefersReducedMotion ? undefined : (dropdownStagger as Variants)}
                         initial="hidden"
@@ -151,9 +167,9 @@ const Navbar = () => {
         </div>
 
         {/* Desktop CTA Button */}
-        <div className="hidden md:block">
+        <div className="hidden md:block flex-shrink-0">
           <Link href="/contact">
-            <Button className="rounded-full bg-linear-to-r from-[#00AEEF] to-[#01F9C6] text-[#001F3F] font-bold px-10 py-3 hover:scale-105 hover:shadow-xl transition-all border-none h-auto text-base">
+            <Button className="rounded-full bg-linear-to-r from-[#00AEEF] to-[#01F9C6] text-[#001F3F] font-bold md:px-6 md:py-2.5 md:text-sm lg:px-10 lg:py-3 hover:scale-105 hover:shadow-xl transition-all border-none h-auto lg:text-base">
               Request a Quote
             </Button>
           </Link>
@@ -206,16 +222,16 @@ const Navbar = () => {
                           {expandedItems.includes(item.name) && (
                             <motion.div
                               initial={{ height: 0, opacity: 0 }}
-                              animate={{ 
-                                height: "auto", 
+                              animate={{
+                                height: "auto",
                                 opacity: 1,
                                 transition: {
                                   height: { duration: prefersReducedMotion ? 0 : 0.3 },
                                   opacity: { duration: prefersReducedMotion ? 0 : 0.2, delay: 0.1 }
                                 }
                               }}
-                              exit={{ 
-                                height: 0, 
+                              exit={{
+                                height: 0,
                                 opacity: 0,
                                 transition: {
                                   height: { duration: prefersReducedMotion ? 0 : 0.3 },
@@ -224,7 +240,7 @@ const Navbar = () => {
                               }}
                               className="overflow-hidden mt-4"
                             >
-                              <motion.div 
+                              <motion.div
                                 className="flex flex-col gap-4 pl-4 border-l-2 border-gray-100"
                                 variants={prefersReducedMotion ? undefined : (dropdownStagger as Variants)}
                                 initial="hidden"
