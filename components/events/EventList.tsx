@@ -141,7 +141,6 @@ const EventList = () => {
       : [
         featuredEvents[activeFeaturedIndex],
         featuredEvents[(activeFeaturedIndex + 1) % totalFeatured],
-        featuredEvents[(activeFeaturedIndex + 2) % totalFeatured],
       ];
 
   return (
@@ -269,7 +268,7 @@ const EventList = () => {
                   </div>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 overflow-hidden sm:grid-cols-1 lg:grid-cols-2">
                   {visibleFeatured.map((event) => (
                     <article
                       key={event.id}
@@ -338,7 +337,7 @@ const EventList = () => {
                   Everything you need to know about what we do.
                 </p>
               </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 ">
                 {events.map((event) => (
                   <EventCard
                     key={event.id}
