@@ -105,6 +105,12 @@ export default function Footer() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="/cookies"
+                className="text-xs text-white/30 hover:text-white/70 transition-colors"
+              >
+                Cookie Policy
+              </a>
             </div>
             <p className="text-xs text-white/20">
               &copy; {new Date().getFullYear()} Next Switch Ltd. All rights reserved.

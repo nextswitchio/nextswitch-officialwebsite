@@ -4,13 +4,16 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Calendar } from "lucide-react"
+import { getInsightsByType } from "@/data/insights"
+import type { InsightContent } from "@/data/insights"
 
-const events = [
-  { title: "Next Switch Annual Summit 2026", location: "Lagos, Nigeria", date: "Jun 15-17, 2026", type: "Upcoming", slug: "next-switch-annual-summit-2026" },
-  { title: "African AI Ethics Roundtable", location: "Nairobi, Kenya", date: "May 10, 2026", type: "Upcoming", slug: "african-ai-ethics-roundtable" },
-  { title: "Innovation Lab Groundbreaking Ceremony", location: "Accra, Ghana", date: "Apr 22, 2026", type: "Past", slug: "innovation-lab-groundbreaking-ceremony" },
-  { title: "Digital Infrastructure Conference", location: "Kigali, Rwanda", date: "Mar 3-5, 2026", type: "Past", slug: "digital-infrastructure-conference" },
-]
+const events = getInsightsByType("event").map((e) => ({
+  title: e.title,
+  location: e.location ?? "",
+  date: e.date,
+  type: e.eventType ?? "Upcoming",
+  slug: e.slug,
+}))
 
 export default function EventsAnnouncements() {
   const ref = useRef<HTMLDivElement>(null)
@@ -31,13 +34,13 @@ export default function EventsAnnouncements() {
             <span className="inline-block text-xs font-semibold tracking-widest text-white/20 uppercase mb-4">Events & Announcements</span>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">Shaping What&apos;s <span className="text-gradient">Next.</span></h2>
           </div>
-          <a href="#" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors shrink-0">
+          <Link href="/events" className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors shrink-0">
             <Calendar className="h-3.5 w-3.5" /> RSVP <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </motion.div>
 
         <div className="mt-12 space-y-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03]">
-          {events.map((event, i) => (
+          {events.map((event) => (
             <Link
               key={event.title}
               href={`/insights/${event.slug}`}
@@ -52,7 +55,9 @@ export default function EventsAnnouncements() {
                   )}
                   <h3 className="text-sm font-medium text-white/70 group-hover:text-white/90 transition-colors truncate">{event.title}</h3>
                 </div>
-                <span className="mt-1.5 block text-xs text-white/20">{event.location}</span>
+                {event.location && (
+                  <span className="mt-1.5 block text-xs text-white/20">{event.location}</span>
+                )}
               </div>
               <span className="shrink-0 ml-4 text-xs text-white/20">{event.date}</span>
             </Link>
